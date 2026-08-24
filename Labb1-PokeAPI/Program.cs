@@ -3,6 +3,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpClient<IPokemonService, PokemonService>(client =>
+{
+    client.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
