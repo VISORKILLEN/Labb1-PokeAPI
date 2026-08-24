@@ -4,17 +4,17 @@ namespace Labb1_PokeAPI.Models
 {
 
     // This class represents the response from the Pokemon API when fetching a list of Pokemon.
-    public class PokemonListRepsonse
+    public class PokemonListResponse
     {
         [JsonPropertyName("count")]
         public int Count { get; set; }
 
         [JsonPropertyName("results")]
-        public List<PokemonResult> Results { get; set; } = new();
+        public List<PokemonListItem> Results { get; set; } = new();
     }
 
     // This class represents an individual Pokemon result in the list response.
-    public class PokemonResult
+    public class PokemonListItem
     {
         [JsonPropertyName("name")]
         public string? Name { get; set; }
