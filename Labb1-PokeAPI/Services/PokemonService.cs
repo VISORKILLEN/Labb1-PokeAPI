@@ -12,6 +12,7 @@ namespace Labb1_PokeAPI.Services
             _httpClient = httpClient;
         }
 
+        // Get a list of Pokemon with a specified limit
         public async Task<List<PokemonListItem>> GetPokemonListsAsync(int limit = 20)
         {
             var response = await _httpClient.GetAsync($"pokemon?limit={limit}");
@@ -25,8 +26,10 @@ namespace Labb1_PokeAPI.Services
             return result?.Results ?? new List<PokemonListItem>();
         }
 
+        // Get details of a specific Pokemon by name or ID
         public async Task<PokemonDetails?> GetPokemonDetailAsync(string nameOrId)
         {
+            
             var response = await _httpClient.GetAsync($"pokemon/{nameOrId}");
             if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
