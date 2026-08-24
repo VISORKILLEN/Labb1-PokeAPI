@@ -25,7 +25,7 @@ namespace Labb1_PokeAPI.Models
         public List<PokemonTypeSlot> Types { get; set; } = new();
 
         [JsonPropertyName("stats")]
-        public List<PokemonStat> Stats { get; set; } = new();
+        public List<PokemonStatslot> Stats { get; set; } = new();
     }
 
     // This class represents a Pokemon's type in the API response.
@@ -41,6 +41,28 @@ namespace Labb1_PokeAPI.Models
         [JsonPropertyName("slot")]
         public int Slot { get; set; }
         [JsonPropertyName("type")]
-        public PokemonType Type { get; set; } = new();
+        public ApiReference Type { get; set; } = new();
     }
+
+    // This class represents a Pokemon's stat in the API response.
+    public class PokemonStatslot
+    {
+        [JsonPropertyName("base_stat")]
+        public int BaseStat { get; set; }
+
+        [JsonPropertyName("stat")]
+        public ApiReference Stat { get; set; } = new();
+    }
+
+    // This class represents a reference to another API resource, such as a type or stat.
+    public class ApiReference
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [JsonPropertyName("url")]
+        public string? Url { get; set; }
+    }
+    
+    
 }
