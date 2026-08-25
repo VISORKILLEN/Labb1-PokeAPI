@@ -1,4 +1,5 @@
 using Labb1_PokeAPI.Services;
+using Labb1_PokeAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ErrorMiddleware>();
 app.UseRouting();
 
 app.UseAuthorization();
