@@ -22,12 +22,21 @@ namespace Labb1_PokeAPI.Controllers
 
         public async Task<IActionResult> Details(string nameOrId)
         {
-            var pokemonDetails = await _pokemonService.GetPokemonDetailAsync(nameOrId);
-            if (pokemonDetails == null)
+            var pokemon = await _pokemonService.GetPokemonDetailAsync(nameOrId);
+            if (pokemon == null)
             {
                 return NotFound();
             }
-            return View(pokemonDetails);
+            return View(pokemon);
+        }
+
+        public IActionResult Search(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Details", new { nameOrId = query.Trim().ToLower() });
         }
     }
 }
