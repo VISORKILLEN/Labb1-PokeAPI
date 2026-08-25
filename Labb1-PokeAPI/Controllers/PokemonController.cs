@@ -31,9 +31,10 @@ namespace Labb1_PokeAPI.Controllers
                 }
                 return View(pokemon);
             }
-            catch (HttpRequestExeption)
+            catch (HttpRequestException)
             {
-
+                ViewBag.ErrorMessage = "Finns inga Pokémons i ditt område. Försök igen senare.";
+                return View("ServiceUnavailable");
             }
         }
 
