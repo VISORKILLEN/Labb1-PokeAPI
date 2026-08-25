@@ -14,11 +14,20 @@ namespace Labb1_PokeAPI.Controllers
             _pokemonService = pokemonService;
         }
 
-        //
         public async Task<IActionResult> Index()
         {
             var pokemonList = await _pokemonService.GetPokemonListsAsync();
             return View(pokemonList);
+        }
+
+        public async Task<IActionResult> Details(string nameOrId)
+        {
+            var pokemonDetails = await _pokemonService.GetPokemonDetailAsync(nameOrId);
+            if (pokemonDetails == null)
+            {
+                return NotFound();
+            }
+            return View(pokemonDetails);
         }
     }
 }
