@@ -1,0 +1,21 @@
+﻿@model List<Labb1_PokeAPI.Models.PokemonListItem>
+
+<p>Antal Pokémon: @Model.Count</p>
+<h1>Pokémon</h1>
+
+<form asp-action="Search" method="get" class="mb-3">
+    <input type="text" name="query" class="form-control" placeholder="Sök efter Pokémon.." />
+    <button type="submit" class="btn btn-primary">Sök</button>
+</form>
+
+<ul> 
+    @foreach (var pokemon in Model)
+    {
+        <li>
+            <a asp-action="Details" asp-route-nameOrId="@pokemon.Name">
+                                @pokemon.Name
+            </a>
+        </li>
+    } 
+</ul>
+

@@ -1,0 +1,28 @@
+﻿@model Labb1_PokeAPI.Models.PokemonDetails
+
+<h1>@Model.Name</h1>
+
+<img src="@Model.Sprites.FrontDefault" alt="@Model.Name"/>
+
+<p><strong>Id:</strong> @Model.Id</p>
+<p><strong>Längd:</strong> @Model.Height</p>
+<p><strong>Vikt:</strong> @Model.Weight</p>
+
+<h3>Typer</h3>
+<ul>
+    @foreach (var type in Model.Types)
+    {
+        <li>@type.Type.Name</li>
+    }
+</ul>
+
+<h3>Stats</h3>
+<ul>
+    @foreach (var stat in Model.Stats)
+    {
+        <li><strong>@stat.Stat.Name:</strong> @stat.BaseStat</li>
+    }
+</ul>
+
+<a asp-action="Index"> Tillbaka till listan</a>
+
