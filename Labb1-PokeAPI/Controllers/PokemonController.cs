@@ -14,11 +14,11 @@ namespace Labb1_PokeAPI.Controllers
             _pokemonService = pokemonService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int offset = 0)
         {
             try
             {
-                var pokemonList = await _pokemonService.GetPokemonListsAsync();
+                var pokemonList = await _pokemonService.GetPokemonListsAsync(offset);
                 return View(pokemonList);
             }
             catch (HttpRequestException)
