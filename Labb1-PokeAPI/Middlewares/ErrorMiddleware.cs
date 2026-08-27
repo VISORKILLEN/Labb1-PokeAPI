@@ -17,10 +17,10 @@
             if (context.Response.StatusCode == 404 && !context.Response.HasStarted)
             {
                 context.Items["Message"] = "Detta va inte kul ju ☹";
-                context.Request.Path = "/Home/Error";
+                context.Request.Path = "/Pokemon/NotFoundError";
 
                 context.Response.StatusCode = 200;
-
+                
                 await _next(context);
             }
         }
