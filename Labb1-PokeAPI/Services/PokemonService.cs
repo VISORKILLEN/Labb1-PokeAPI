@@ -13,9 +13,9 @@ namespace Labb1_PokeAPI.Services
         }
 
         // Get a list of Pokemon with a specified limit
-        public async Task<List<PokemonListItem>> GetPokemonListsAsync(int limit = 20)
+        public async Task<PokemonListResult> GetPokemonListsAsync(int offset = 0,int limit = 20)
         {
-            var response = await _httpClient.GetAsync($"pokemon?limit={limit}");
+            var response = await _httpClient.GetAsync($"pokemon?offset={offset}&limit={limit}");
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
@@ -23,7 +23,14 @@ namespace Labb1_PokeAPI.Services
             {
                 PropertyNameCaseInsensitive = true
             });
-            return result?.Results ?? new List<PokemonListItem>();
+
+            return new PokemonListResult
+            {
+                Items = result?.Results ?? new List<PokemonListItem>(),
+                Offset = offset,
+                Limit = limit,
+                TotalCount = result?.Count ?? 0
+            };
         }
 
         // Get details of a specific Pokemon by name or ID

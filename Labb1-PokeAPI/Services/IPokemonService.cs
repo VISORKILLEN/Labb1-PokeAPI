@@ -4,7 +4,7 @@ namespace Labb1_PokeAPI.Services
 {
     public interface IPokemonService
     {
-        Task<List<PokemonListResult>> GetPokemonListsAsync(int offset = 0, int limit = 20);
+        Task<PokemonListResult> GetPokemonListsAsync(int offset = 0, int limit = 20);
         Task<PokemonDetails?> GetPokemonDetailAsync(string nameOrId);
 
     }
