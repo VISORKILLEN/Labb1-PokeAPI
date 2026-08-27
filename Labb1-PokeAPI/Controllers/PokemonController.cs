@@ -18,8 +18,8 @@ namespace Labb1_PokeAPI.Controllers
         {
             try
             {
-                var pokemonList = await _pokemonService.GetPokemonListsAsync(offset);
-                return View(pokemonList);
+                var result = await _pokemonService.GetPokemonListsAsync(offset);
+                return View(result);
             }
             catch (HttpRequestException)
             {
@@ -30,19 +30,22 @@ namespace Labb1_PokeAPI.Controllers
 
         public async Task<IActionResult> Details(string nameOrId)
         {
+            // Check if the nameOrId parameter is null or empty
             try
             {
                 var pokemon = await _pokemonService.GetPokemonDetailAsync(nameOrId);
                 if (pokemon == null)
                 {
-                    return NotFound();
+                    TempData["ErrorMessage"] = "Pokémon hittades inte.";
+                    return RedirectToAction("Index");
                 }
                 return View(pokemon);
             }
+            // Catch any HttpRequestException that occurs during the API call
             catch (HttpRequestException)
             {
-                ViewBag.ErrorMessage = "Finns inga Pokémons i ditt område. Försök igen senare.";
-                return View("ServiceUnavailable");
+                TempData["ErrorMessage"] = "Finns inga Pokémons i ditt område. Försök igen senare.";
+                return RedirectToAction("Index");
             }
         }
 

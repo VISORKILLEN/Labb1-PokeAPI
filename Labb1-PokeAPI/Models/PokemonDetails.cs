@@ -18,6 +18,9 @@ namespace Labb1_PokeAPI.Models
         [JsonPropertyName("weight")]
         public int Weight { get; set; }
 
+        public double HeightInMeters => Height / 10.0; // Convert decimeters to meters
+        public double WeightInKilograms => Weight / 10.0; // Convert hectograms to kilograms
+
         [JsonPropertyName("sprites")]
         public PokemonSprites Sprites { get; set; } = new();
 

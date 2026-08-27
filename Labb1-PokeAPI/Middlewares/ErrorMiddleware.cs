@@ -16,7 +16,7 @@
 
             if (context.Response.StatusCode == 404 && !context.Response.HasStarted)
             {
-                context.Items["Message"] = "Pokemon kunde inte hittas ☹";
+                context.Items["Message"] = "Detta va inte kul ju ☹";
                 context.Request.Path = "/Home/Error";
 
                 context.Response.StatusCode = 200;
