@@ -19,7 +19,12 @@ namespace Labb1_PokeAPI.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var message = HttpContext.Items["Message"] as string;
+
+            return View(new ErrorViewModel
+            { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
+                Message = message
+            });
         }
     }
 }

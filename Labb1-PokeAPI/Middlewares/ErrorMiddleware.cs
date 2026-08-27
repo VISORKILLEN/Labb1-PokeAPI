@@ -12,15 +12,14 @@
         // This method is called for each HTTP request and allows the middleware to process the request and response.
         public async Task InvokeAsync(HttpContext context)
         {
-            Console.WriteLine($"I ErrorMiddleware:{context.Request.Path}");
             await _next(context);
 
-            Console.WriteLine($"I ErrorMiddleware:{context.Response.StatusCode}");
-
-            if (context.Response.StatusCode == 404)
+            if (context.Response.StatusCode == 404 && !context.Response.HasStarted)
             {
-                context.Items["Message"] = "Detta är inte rätt sida lilla vän";
+                context.Items["Message"] = "Pokemon kunde inte hittas ☹";
                 context.Request.Path = "/Home/Error";
+
+                context.Response.StatusCode = 200;
 
                 await _next(context);
             }

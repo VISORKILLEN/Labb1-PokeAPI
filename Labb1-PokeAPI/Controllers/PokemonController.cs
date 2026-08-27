@@ -16,8 +16,16 @@ namespace Labb1_PokeAPI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var pokemonList = await _pokemonService.GetPokemonListsAsync();
-            return View(pokemonList);
+            try
+            {
+                var pokemonList = await _pokemonService.GetPokemonListsAsync();
+                return View(pokemonList);
+            }
+            catch (HttpRequestException)
+            {
+                ViewBag.ErrorMessage = "Kunde inte hämta Pokémon-lista.just nu, Prova igen senare";
+                return View("ServiceUnavailable");
+            }
         }
 
         public async Task<IActionResult> Details(string nameOrId)

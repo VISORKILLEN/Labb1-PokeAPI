@@ -5,12 +5,16 @@
 
 <div class="text-center mt-5">
     <h1 class="display-4 text-danger">Detta var fel ställe att vara på</h1>
+   
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
     <p>@Model.Message</p>
+    }
 
     <hr />
-    <a asp-controller="Home"
+    <a asp-controller="Pokemon"
        asp-action="Index"
        class="btn btn-primary">
-    </a>
         Tillbaka Startsidan för att kolla Pokemons 
+    </a>
 </div>
