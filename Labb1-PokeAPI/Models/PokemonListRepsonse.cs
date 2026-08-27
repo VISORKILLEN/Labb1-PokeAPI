@@ -20,5 +20,14 @@ namespace Labb1_PokeAPI.Models
         public string? Name { get; set; }
         [JsonPropertyName("url")]
         public string? Url { get; set; }
+
+        public string Id
+        {
+            get
+            {
+                var trimmed = Url?.TrimEnd('/') ?? "";
+                return trimmed.Substring(trimmed.LastIndexOf('/') + 1);
+            }
+        }
     }
 }
