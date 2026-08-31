@@ -57,5 +57,12 @@ namespace Labb1_PokeAPI.Controllers
             }
             return RedirectToAction("Details", new { nameOrId = query.Trim().ToLower() });
         }
+
+        public IActionResult NotFoundError()
+        {
+            var message = HttpContext.Items["Message"] as string ?? "Sidan kunde inte hittas.";
+            ViewBag.ErrorMessage = message ?? "Sidan kunde inte hittas det va inte så kul ju ☹ ";
+            return View("NotFoundError");
+        }
     }
 }
