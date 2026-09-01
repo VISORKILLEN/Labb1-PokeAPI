@@ -1,28 +1,40 @@
 ﻿@model Labb1_PokeAPI.Models.PokemonDetails
 
-<h1>@Model.Name</h1>
 
-<img src="@Model.Sprites.FrontDefault" alt="@Model.Name"/>
+<div class="row">
+<div class="col-md-7">
+    <h1>@Model.Name</h1>
 
-<p><strong>Id:</strong> @Model.Id</p>
-<p><strong>Längd:</strong> @Model.HeightInMeters m</p>
-<p><strong>Vikt:</strong> @Model.WeightInKilograms kg</p>
+    <p><strong>Id:</strong> @Model.Id</p>
+    <p><strong>Längd:</strong> @Model.HeightInMeters m</p>
+    <p><strong>Vikt:</strong> @Model.WeightInKilograms kg</p>
 
-<h3>Typer</h3>
-<ul>
-    @foreach (var type in Model.Types)
-    {
-        <li>@type.Type.Name</li>
-    }
-</ul>
+    <h3>Typer</h3>
+    <ul>
+        @foreach (var type in Model.Types)
+        {
+            <li>@type.Type.Name</li>
+        }
+    </ul>
 
-<h3>Stats</h3>
-<ul>
-    @foreach (var stat in Model.Stats)
-    {
-        <li><strong>@stat.Stat.Name:</strong> @stat.BaseStat</li>
-    }
-</ul>
+    <h3>Stats</h3>
+    <ul>
+        @foreach (var stat in Model.Stats)
+        {
+            <li><strong>@stat.Stat.Name:</strong> @stat.BaseStat</li>
+        }
+    </ul>
 
-<a asp-action="Index" > Tillbaka till listan</a>
+    <a asp-action="Index" class="btn text-light" style="background-color:#4E2a84;">
+        Tillbaka till listan
+    </a>
+</div>
+
+    <div class="col-md-5 text-center">
+        <img src="@Model.Sprites.FrontDefault" alt="@Model.Name"
+             style="width:280px; height:280px; object-fit:contain;" class="d-block mx-auto mb-3" />
+    </div>
+</div>
+
+
 

@@ -19,7 +19,18 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #f4f0fa;
 }
+
+.btn-primary{
+    background-color:#4E2A84;
+    border-color:#4E2A84;
+}
+
+    .btn-primary:hover {
+        background-color: #3b1f66;
+        border-color: #3b1f66;
+    }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
